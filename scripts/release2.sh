@@ -723,6 +723,7 @@ common_help() {
   --build-binary-out <path>  Specify the outlink path for the binaries (otherwise it's the current directory).
   --skopeo-copy              Don't load containers into host, simply copy them to registry with skopeo.
   --skip-cargo-deps          Don't prefetch the cargo build dependencies.
+  --helm-update              Force update helm dependencies.
 
 Environment Variables:
   RUSTFLAGS                  Set Rust compiler options when building binaries.

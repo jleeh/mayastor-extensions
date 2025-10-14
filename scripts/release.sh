@@ -5,7 +5,7 @@
 # The script assumes that a user is logged on to dockerhub for public images,
 # or has insecure registry access setup for CI.
 
-SOURCE_REL=$(dirname "$0")/scripts/release2.sh
+SOURCE_REL=$(dirname "$0")/release2.sh
 
 if [ ! -f "$SOURCE_REL" ] && [ -z "$CI" ]; then
   git submodule update --init --recursive
