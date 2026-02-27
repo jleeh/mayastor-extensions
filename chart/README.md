@@ -188,6 +188,10 @@ This removes all the Kubernetes components associated with the chart and deletes
 | io_engine.&ZeroWidthSpace;nodeSelector | Node selectors to designate storage nodes for diskpool creation Note that if multi-arch images support 'kubernetes.io/arch: amd64' should be removed. | <pre>{<br>"kubernetes.io/arch":"amd64",<br>"openebs.io/engine":"mayastor"<br>}</pre> |
 | io_engine.&ZeroWidthSpace;nvme.&ZeroWidthSpace;ioTimeout | Timeout for IOs The default here is exaggerated for local disks, but we've observed that in shared virtual environments having a higher timeout value is beneficial. Please adjust this according to your hardware and needs. | `"110s"` |
 | io_engine.&ZeroWidthSpace;nvme.&ZeroWidthSpace;tcp.&ZeroWidthSpace;maxQueueDepth | You may need to increase this for a higher outstanding IOs per volume | `"32"` |
+| io_engine.&ZeroWidthSpace;pool.&ZeroWidthSpace;alerts.&ZeroWidthSpace;errorThreshold | After this many errors a pool alert is raised as Warning. | `64` |
+| io_engine.&ZeroWidthSpace;pool.&ZeroWidthSpace;alerts.&ZeroWidthSpace;stallDeadline | If an I/O is stuck longer than this period, then the pool is considered stalled and a Critical alert is raised. The pool disk will also be reset and the stall will be cleared once complete and I/O flows again. default: .Values.io_engine.nvme.ioTimeout * 2 | `nil` |
+| io_engine.&ZeroWidthSpace;pool.&ZeroWidthSpace;alerts.&ZeroWidthSpace;stallTransitionThreshold | After this many transitions within the stallTransitionWindow, a pool alert is raised as Warning. | `3` |
+| io_engine.&ZeroWidthSpace;pool.&ZeroWidthSpace;alerts.&ZeroWidthSpace;stallTransitionWindow | Time window during which stall ↔ resume state transitions are tracked for flakiness detection. | `"3h"` |
 | io_engine.&ZeroWidthSpace;port | Container port for the io-engine service | `10124` |
 | io_engine.&ZeroWidthSpace;priorityClassName | Set PriorityClass, overrides global | `""` |
 | io_engine.&ZeroWidthSpace;pstorRetries | Number of retries for pstor persistence before the volume target self shutdowns | `300` |

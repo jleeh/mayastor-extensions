@@ -387,3 +387,16 @@ Usage:
     {{- end -}}
   {{- end -}}
 {{- end }}
+
+{{/*
+If .Values.io_engine.pool.alerts.stallDeadline is not specified,
+then defaults to 2 * .Values.io_engine.nvme.ioTimeout * 2
+*/}}
+{{- define "io-engine.stallDeadline" -}}
+{{- if .Values.io_engine.pool.alerts.stallDeadline -}}
+{{- .Values.io_engine.pool.alerts.stallDeadline -}}
+{{- else -}}
+{{- $t := trimSuffix "s" .Values.io_engine.nvme.ioTimeout | int -}}
+{{- printf "%ds" (mul $t 2) -}}
+{{- end -}}
+{{- end -}}
