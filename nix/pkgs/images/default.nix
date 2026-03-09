@@ -72,7 +72,9 @@ let
     chmod -w build/chart-box/consolidated
     chmod -w build/chart-box/consolidated/*.yaml
 
-    mkdir -p $out && cp -drf --preserve=mode build/chart-box/consolidated $out/chart
+    mkdir -p $out
+    chmod -R 0777 $out
+    cp -drf --preserve=mode build/chart-box/consolidated $out/chart
   '';
   build-upgrade-image = { buildType, name }:
     build-extensions-image rec{
